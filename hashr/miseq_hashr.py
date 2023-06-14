@@ -12,6 +12,10 @@ import hashlib
 import logging
 import os
 
+__author__ = 'adamkoziol'
+__author__ = 'LargeKowalski888'
+__author__ = 'noorshu'
+
 
 class HashR:
 
@@ -41,7 +45,7 @@ class HashR:
         # As Illumina nests the FASTQ files within the sequence folder, add the nesting
         nested_folder = os.path.join(sequence_folder, 'Data', 'Intensities', 'BaseCalls')
         # The FASTQ files have a .fastq.gz extension. Find all files that match this with glob
-        fastq_files = glob(os.path.join(nested_folder, '*.fastq.gz'))
+        fastq_files = sorted(glob(os.path.join(nested_folder, '*.fastq.gz')))
         # Ensure that there are FASTQ files in the folder
         try:
             assert fastq_files
