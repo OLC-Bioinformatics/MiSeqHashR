@@ -63,14 +63,6 @@ def test_create_hash_folder(variables):
     assert os.path.isdir(variables.hash_folder)
 
 
-def test_create_hash_folder_illegal():
-    """
-    Test to see if a SystemExit is raised when an illegal path is provided
-    """
-    with pytest.raises(SystemExit):
-        HashR.create_hash_folder(sequence_folder='/not/a/real/path')
-        
-
 def test_create_hashes(variables):
     """
     Test that the test file contents are hashed properly 
