@@ -31,6 +31,8 @@ jobs:
             conda config --add channels conda-forge
             conda create -n hashr -c conda-forge pytest pytest-cov
             source activate hashr
+            mkdir -p /not/a/real/path
+            chmod -R 000 /not/a/real/path
             python -m pytest tests/ -s -vvv --cov=hashr --cov-report term-missing --cov-config=.coveragec --cov-report=xml:test_reports/miseq_hashr.xml
       - store_artifacts:
           path: test_reports/
