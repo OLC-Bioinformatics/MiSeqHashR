@@ -22,8 +22,15 @@ jobs:
           name: Setup Environment and Run Tests
           command: |
             apt update
-            apt install -y wget coreutils curl gnupg pip python
-            pip install pytest pytest-cov
+            apt install -y wget coreutils curl gnupg
+            wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O $HOME/miniconda.sh;
+            bash $HOME/miniconda.sh -b -p $HOME/miniconda
+            export PATH="$HOME/miniconda/bin:$PATH"
+            conda config --set always_yes yes --set changeps1 no
+            conda update -y conda
+            conda config --add channels conda-forge
+            conda create -n hashr -c conda-forge pytest pytest-cov
+            source activate hashr
             python -m pytest tests/ -s -vvv --cov=hashr --cov-report term-missing --cov-config=.coveragec --cov-report=xml:test_reports/miseq_hashr.xml
       - store_artifacts:
           path: test_reports/
