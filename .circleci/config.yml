@@ -34,7 +34,7 @@ jobs:
 workflows:
     build_and_test:
         jobs:
-          - miseq_hashr::
+          - miseq_hashr:
               filters:
                 branches:
                   ignore: gh-pages
