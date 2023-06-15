@@ -68,14 +68,10 @@ class HashR:
         """
         hash_folder = os.path.join(sequence_folder, 'hashes')
         # Makes the folder hashes within the directory listed below
-        try:
-            os.makedirs(
+        os.makedirs(
                 hash_folder,
                 exist_ok=True
                 )
-        except PermissionError as exc:
-            logging.error('Could not create folder to store hash files: %s', hash_folder)
-            raise SystemExit from exc
         logging.debug('Hashes will be written to: %s', hash_folder)
         return hash_folder
 
