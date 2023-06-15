@@ -12,6 +12,9 @@ import hashlib
 import logging
 import os
 
+# Local imports
+from hashr.version import __version__
+
 __author__ = 'adamkoziol'
 __author__ = 'LargeKowalski888'
 __author__ = 'noorshu'
@@ -65,13 +68,12 @@ class HashR:
         """
         hash_folder = os.path.join(sequence_folder, 'hashes')
         # Makes the folder hashes within the directory listed below
-        os.makedirs(
-            hash_folder,
-            exist_ok=True
-            )
         try:
-            assert os.path.isdir(hash_folder)
-        except AssertionError as exc:
+            os.makedirs(
+                hash_folder,
+                exist_ok=True
+                )
+        except PermissionError as exc:
             logging.error('Could not create folder to store hash files: %s', hash_folder)
             raise SystemExit from exc
         logging.debug('Hashes will be written to: %s', hash_folder)
@@ -96,7 +98,7 @@ class HashR:
         try:
             assert fastq_hashes
         except AssertionError as exc:
-            logging.error('Could not create hashes from FASTQ files')
+            logging.error('Could not create hashes from files')
             raise SystemExit from exc
         logging.debug('Calculated hashes: %s', fastq_hashes)
         return fastq_hashes
@@ -144,6 +146,11 @@ def cli():
         help='Set the logging level. Options are debug, info, warning, error, and critical. '
              'Default is info.'
     )
+    parser.add_argument(
+        '--version', '--version',
+        action='version',
+        version='%(prog)s commit {}'.format(__version__)
+        )
     args = parser.parse_args()
     logging.basicConfig(
         level=args.verbosity.upper(),
