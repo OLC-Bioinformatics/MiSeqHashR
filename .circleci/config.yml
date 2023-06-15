@@ -22,7 +22,7 @@ jobs:
           name: Setup Environment and Run Tests
           command: |
             apt update
-            apt install -y wget coreutils curl gnupg pipe
+            apt install -y wget coreutils curl gnupg pip
             pip install pytest pytest-cov
             python -m pytest tests/ -s -vvv --cov=hashr --cov-report term-missing --cov-config=.coveragec --cov-report=xml:test_reports/miseq_hashr.xml
       - store_artifacts:
