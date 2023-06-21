@@ -12,7 +12,7 @@ MiSeqHashR is available as a pip package:
 
 ### Running
 
-MiseqHashR requires a single command line argument: the path to an Illumina MiSeq run
+MiSeqHashR requires a single command line argument: the path to an Illumina MiSeq run
 
 ### Example command
 

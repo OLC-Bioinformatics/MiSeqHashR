@@ -13,12 +13,12 @@ with open(convert_path(os.path.join('hashr', 'version.py')), 'r', encoding='utf-
     exec(version_file.read(), version)
 
 setup(
-    name="MiseqHashR",
+    name="MiSeqHashR",
     version=version['__version__'],
     packages=find_packages(),
     entry_points={
         'console_scripts': [
-            'MiseqHashR = hashr.miseq_hashr:cli'
+            'MiSeqHashR = hashr.miseq_hashr:cli'
         ],
     },
     include_package_data=True,
