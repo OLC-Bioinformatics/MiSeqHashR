@@ -1,4 +1,4 @@
-# MiseqHashR
+# MiSeqHashR
 Create and store MD5 hashes of Illumina .fastq.gz files from sequencing runs
 
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/OLC-Bioinformatics/MiseqHashR/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/OLC-Bioinformatics/MiseqHashR/tree/main)
@@ -8,7 +8,7 @@ Create and store MD5 hashes of Illumina .fastq.gz files from sequencing runs
 
 MiSeqHashR is available as a pip package:
 
-`pip install MiseqHashR`
+`pip install MiSeqHashR`
 
 ### Running
 
@@ -21,7 +21,7 @@ MiseqHashR requires a single command line argument: the path to an Illumina MiSe
 ### Usage
 
 ```
-usage: MiseqHashR [-h] -f folder [-v VERBOSITY] [--version]
+usage: MiSeqHashR [-h] -f folder [-v VERBOSITY] [--version]
 
 Create MD5 hashes for all FASTQ files in a MiSeq run
 
