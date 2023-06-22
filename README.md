@@ -1,8 +1,8 @@
 # MiSeqHashR
 Create and store MD5 hashes of Illumina .fastq.gz files from sequencing runs
 
-[![CircleCI](https://dl.circleci.com/status-badge/img/gh/OLC-Bioinformatics/MiseqHashR/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/OLC-Bioinformatics/MiseqHashR/tree/main)
-[![codecov](https://codecov.io/gh/OLC-Bioinformatics/MiseqHashR/branch/main/graph/badge.svg?token=WPYYBU8C6P)](https://codecov.io/gh/OLC-Bioinformatics/MiseqHashR)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/OLC-Bioinformatics/MiSeqHashR/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/OLC-Bioinformatics/MiSeqHashR/tree/main)
+[![codecov](https://codecov.io/gh/OLC-Bioinformatics/MiSeqHashR/branch/main/graph/badge.svg?token=WPYYBU8C6P)](https://codecov.io/gh/OLC-Bioinformatics/MiSeqHashR)
 
 ### Installation
 
