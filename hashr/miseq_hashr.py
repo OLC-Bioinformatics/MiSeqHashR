@@ -32,11 +32,12 @@ class HashR:
         Runs the HashR methods
         """
         self.hash_folder = HashR.create_hash_folder(sequence_folder=self.sequence_folder)
-        self.fastq_hashes = HashR.create_hashes(fastq_files=self.fastq_files)
-        HashR.write_hashes(
-            hash_folder=self.hash_folder,
-            fastq_hashes=self.fastq_hashes
-        )
+        for fastq_file in self.fastq_files:
+            fastq_hash = HashR.create_hashes(fastq_file=fastq_file)
+            HashR.write_hashes(
+                hash_folder=self.hash_folder,
+                fastq_hashes=fastq_hash
+            )
 
     @staticmethod
     def confirm_fastq_present(sequence_folder: str):
@@ -77,26 +78,20 @@ class HashR:
 
 
     @staticmethod
-    def create_hashes(fastq_files: list):
+    def create_hashes(fastq_file: str):
         """
         Create MD5 hashes for each FASTQ file
-        :param list fastq_files: List of all FASTQ files in sequencing run
+        :param str fastq_file: Name and path of FASTQ file in sequencing run
         :return fastq_hashes: Dictionary of sample_name: FASTQ hash
         """
         fastq_hashes = {}
-        for fastq in fastq_files:
-            # Extract the base name of the FASTQ file by splitting off the path and extension
-            fastq_name = os.path.splitext(os.path.basename(fastq))[0]
-            # Use hashlib.md5 to create a MD5 hash for the FASTQ file
-            md5_hash = hashlib.md5(open(fastq,'rb').read()).hexdigest()
-            # Add the hash to the list of hashes
-            fastq_hashes[fastq_name] = md5_hash
-        try:
-            assert fastq_hashes
-        except AssertionError as exc:
-            logging.error('Could not create hashes from files')
-            raise SystemExit from exc
-        logging.debug('Calculated hashes: %s', fastq_hashes)
+        # Extract the base name of the FASTQ file by splitting off the path and extension
+        fastq_name = os.path.splitext(os.path.basename(fastq_file))[0]
+        # Use hashlib.md5 to create a MD5 hash for the FASTQ file
+        md5_hash = hashlib.md5(open(fastq_file,'rb').read()).hexdigest()
+        # Add the hash to the list of hashes
+        fastq_hashes[fastq_name] = md5_hash
+        logging.debug('Calculated hash: %s', fastq_hashes)
         return fastq_hashes
 
     @staticmethod

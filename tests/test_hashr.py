@@ -67,24 +67,18 @@ def test_create_hashes(variables):
     """
     Test that the test file contents are hashed properly 
     """
-    variables.fastq_hashes = HashR.create_hashes(fastq_files=variables.fastq_files)
+    variables.fastq_hashes = HashR.create_hashes(fastq_file=variables.fastq_files[0])
     assert variables.fastq_hashes[
         '2018-CAL-0033_S1_L001_R1_001.fastq'] == '7fa54e3f40ea84ce3371d3a8d04fc31f'
 
-
-def test_create_hashes_empty():
-    """
-    Test that the create_hashes method fails when provided with an empty list
-    """
-    with pytest.raises(SystemExit):
-        HashR.create_hashes(fastq_files=[])
 
 def test_create_hashes_no_file():
     """
     Tests to ensure that the method fails if the file doesn't exist
     """
     with pytest.raises(FileNotFoundError):
-        HashR.create_hashes(fastq_files=['2018-CAL-0033_S1_L001_R1_001'])
+        HashR.create_hashes(fastq_file='2018-CAL-0033_S1_L001_R1_001')
+
 
 def test_write_hashes(variables):
     """
@@ -98,6 +92,7 @@ def test_write_hashes(variables):
         os.path.join(variables.hash_folder, '2018-CAL-0033_S1_L001_R1_001.fastq.txt')
         )
 
+
 def test_write_hashes_illegal(variables):
     """
     Tests that the method fails when an illegal path is provided
@@ -108,12 +103,14 @@ def test_write_hashes_illegal(variables):
             fastq_hashes=variables.fastq_hashes
         )
 
+
 def test_cleanup(variables):
     """
     Delete the test folder following the completion of all the tests
     """
     shutil.rmtree(variables.hash_folder)
     assert not os.path.isdir(variables.hash_folder)
+
 
 @patch('argparse.ArgumentParser.parse_args')
 def test_hashr_integration(mock_args, variables):
@@ -126,6 +123,7 @@ def test_hashr_integration(mock_args, variables):
     )
     cli()
     assert os.path.isdir(variables.hash_folder)
+
 
 def test_cleanup_integration(variables):
     """
